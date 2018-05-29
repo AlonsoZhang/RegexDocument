@@ -781,6 +781,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="OKDemo:" target="XfG-lQ-9wD" id="5lN-Hq-oqV"/>
+                                </connections>
                             </button>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WG5-My-klV">
                                 <rect key="frame" x="20" y="339" width="500" height="22"/>
@@ -802,14 +805,17 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="13" name=".PingFangTC-Regular"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="ChooseFilePath:" target="XfG-lQ-9wD" id="8Em-fg-0x5"/>
+                                </connections>
                             </button>
-                            <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VU6-kL-0Y0">
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="42" horizontalPageScroll="10" verticalLineScroll="42" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VU6-kL-0Y0">
                                 <rect key="frame" x="20" y="382" width="610" height="109"/>
                                 <clipView key="contentView" id="0FY-IR-nAJ">
                                     <rect key="frame" x="1" y="0.0" width="608" height="93"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView identifier="TableViewDemo" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="bjy-6i-F4r" viewBased="YES" id="kci-iV-VoE">
+                                        <tableView identifier="TableViewDemo" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="40" rowSizeStyle="automatic" headerView="bjy-6i-F4r" viewBased="YES" id="kci-iV-VoE">
                                             <rect key="frame" x="0.0" y="0.0" width="626" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -927,6 +933,10 @@
                                                     </prototypeCellViews>
                                                 </tableColumn>
                                             </tableColumns>
+                                            <connections>
+                                                <outlet property="dataSource" destination="XfG-lQ-9wD" id="kBG-Nq-5qw"/>
+                                                <outlet property="delegate" destination="XfG-lQ-9wD" id="rr3-wW-WRS"/>
+                                            </connections>
                                         </tableView>
                                     </subviews>
                                 </clipView>
@@ -943,13 +953,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <scrollView autohidesScrollers="YES" horizontalLineScroll="42" horizontalPageScroll="10" verticalLineScroll="42" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSg-M1-1lB">
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="65" horizontalPageScroll="10" verticalLineScroll="65" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSg-M1-1lB">
                                 <rect key="frame" x="20" y="199" width="610" height="108"/>
                                 <clipView key="contentView" id="BCT-PD-qhT">
                                     <rect key="frame" x="1" y="0.0" width="608" height="107"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView identifier="TableView" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="40" rowSizeStyle="automatic" headerView="1fX-7B-E6F" viewBased="YES" id="67H-HO-jcS">
+                                        <tableView identifier="TableView" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="63" rowSizeStyle="automatic" headerView="1fX-7B-E6F" viewBased="YES" id="67H-HO-jcS">
                                             <rect key="frame" x="0.0" y="0.0" width="608" height="84"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -1067,6 +1077,10 @@
                                                     </prototypeCellViews>
                                                 </tableColumn>
                                             </tableColumns>
+                                            <connections>
+                                                <outlet property="dataSource" destination="XfG-lQ-9wD" id="3P2-MF-cfH"/>
+                                                <outlet property="delegate" destination="XfG-lQ-9wD" id="eiF-X4-4wY"/>
+                                            </connections>
                                         </tableView>
                                     </subviews>
                                 </clipView>
@@ -1103,20 +1117,23 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="13" name=".PingFangTC-Regular"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="SaveAfterRowsDeleted:" target="XfG-lQ-9wD" id="cJB-7F-67n"/>
+                                </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Xos-nL-STX">
-                                <rect key="frame" x="18" y="169" width="124" height="22"/>
+                                <rect key="frame" x="18" y="169" width="150" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="Fjb-iZ-cRe"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="保留文件中的行数：" id="AzV-q1-jmX">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Keep string above row:" id="AzV-q1-jmX">
                                     <font key="font" size="13" name=".PingFangTC-Regular"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="s66-1k-sJQ">
-                                <rect key="frame" x="150" y="169" width="422" height="22"/>
+                                <rect key="frame" x="176" y="169" width="396" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="BBu-23-kwr"/>
                                 </constraints>
@@ -1127,7 +1144,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="b9G-La-rIR">
-                                <rect key="frame" x="176" y="139" width="275" height="22"/>
+                                <rect key="frame" x="197" y="139" width="254" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="hVf-bn-Dkr"/>
                                 </constraints>
@@ -1138,11 +1155,11 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jwx-9F-bbt">
-                                <rect key="frame" x="18" y="139" width="150" height="22"/>
+                                <rect key="frame" x="18" y="139" width="171" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="ir4-at-jSt"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="删除文件中符合的正则：" id="5mt-jI-k7l">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Delete string match regex:" id="5mt-jI-k7l">
                                     <font key="font" size="13" name=".PingFangTC-Regular"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1168,6 +1185,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="13" name=".PingFangTC-Regular"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="ChooseFilePath:" target="XfG-lQ-9wD" id="qKg-aS-ZJx"/>
+                                </connections>
                             </button>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7Wa-gc-szT">
                                 <rect key="frame" x="20" y="51" width="487" height="22"/>
@@ -1189,6 +1209,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="13" name=".PingFangTC-Regular"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="ChooseFilePath:" target="XfG-lQ-9wD" id="fmP-zG-3Yc"/>
+                                </connections>
                             </button>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="rVt-BN-jgx">
                                 <rect key="frame" x="0.0" y="369" width="650" height="5"/>
@@ -1202,6 +1225,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="13" name=".PingFangTC-Regular"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="SearchPattern:" target="XfG-lQ-9wD" id="uwp-Hb-qDo"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zwP-qJ-CBp">
                                 <rect key="frame" x="555" y="133" width="81" height="32"/>
@@ -1212,6 +1238,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="13" name=".PingFangTC-Regular"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="SaveAfterPatternDeleted:" target="XfG-lQ-9wD" id="nuI-OS-JUX"/>
+                                </connections>
                             </button>
                             <button horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="idB-Pg-eBn">
                                 <rect key="frame" x="454" y="137" width="25" height="25"/>
@@ -1222,6 +1251,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="HelpBtn:" target="XfG-lQ-9wD" id="jt9-45-rEG"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="L9O-oB-me7">
                                 <rect key="frame" x="475" y="133" width="84" height="32"/>
@@ -1232,6 +1264,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="13" name=".PingFangTC-Regular"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="SearchPatternDeleted:" target="XfG-lQ-9wD" id="C4X-Vd-7wO"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4WH-y2-9W1">
                                 <rect key="frame" x="225" y="106" width="200" height="32"/>
@@ -1249,6 +1284,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="CalcCount:" target="XfG-lQ-9wD" id="XM2-dX-arb"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3wT-A7-fKq">
                                 <rect key="frame" x="570" y="489" width="66" height="32"/>
@@ -1256,6 +1294,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="OutputCSV:" target="XfG-lQ-9wD" id="i71-YN-hhU"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dE6-6J-OLL">
                                 <rect key="frame" x="205" y="13" width="240" height="32"/>
@@ -1266,6 +1307,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="13" name=".PingFangTC-Regular"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="SaveAtLast:" target="XfG-lQ-9wD" id="SQr-Bq-CJR"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>
@@ -1342,10 +1386,24 @@
                             <constraint firstItem="LYH-GN-R9i" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="zpe-F4-AXB"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="FilePath" destination="WG5-My-klV" id="c26-lc-QM2"/>
+                        <outlet property="FilePath1" destination="dFc-vM-pMK" id="i9h-IO-udx"/>
+                        <outlet property="FilePath2" destination="7Wa-gc-szT" id="5Yf-k4-7fG"/>
+                        <outlet property="OutputCSV" destination="3wT-A7-fKq" id="ImB-as-NmF"/>
+                        <outlet property="PreicateDemo" destination="vOG-b9-2ZB" id="t8A-Hg-1Xi"/>
+                        <outlet property="RemovePattern" destination="b9G-La-rIR" id="lq5-Y2-3q6"/>
+                        <outlet property="RowsLeft" destination="s66-1k-sJQ" id="xcI-Qh-b3a"/>
+                        <outlet property="SearchPattern" destination="RCs-By-D7R" id="26S-ym-Biy"/>
+                        <outlet property="TableView" destination="67H-HO-jcS" id="KA6-Hu-HAm"/>
+                        <outlet property="TableViewDemo" destination="kci-iV-VoE" id="rs7-OW-Tsx"/>
+                        <outlet property="TestStringDemo" destination="5ea-2W-Bda" id="SPn-tL-ARD"/>
+                        <outlet property="okdemoBtn" destination="0Dq-wJ-COm" id="Fc9-Wr-9Ib"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="1184"/>
+            <point key="canvasLocation" x="75" y="1076"/>
         </scene>
     </scenes>
 </document>
