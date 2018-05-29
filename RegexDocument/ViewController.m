@@ -126,7 +126,7 @@
         if ([[[self.tableContents objectAtIndex:row] objectForKey:@"ROW"] length] > 0)
         {
             NSString *message = [NSString stringWithFormat:@"\n%@ : %@\n\n",[[self.tableContents objectAtIndex:row] objectForKey:@"CONTENT"],[[self.tableContents objectAtIndex:row] objectForKey:@"ROW"]];
-            [self showAlertViewWithInform:message];
+            [self showAlertViewWithInfo:message];
         }
     }
     return true;
@@ -321,13 +321,13 @@
                 });
             }else{
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self showAlertViewWithInform:@"No string match regex!"];
+                    [self showAlertViewWithInfo:@"No string match regex!"];
                 });
             }
         });
     }else
     {
-        [self showAlertViewWithInform:@"Please choose file path!!!"];
+        [self showAlertViewWithInfo:@"Please choose file path!!!"];
         [self.FilePath becomeFirstResponder];
     }
 }
@@ -349,12 +349,12 @@
             newContents = [newlogContentsArray componentsJoinedByString:@"\n"];
             [newContents writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self showAlertViewWithInform:@"Save successful!!!"];
+                [self showAlertViewWithInfo:@"Save successful!!!"];
             });
         });
     }else
     {
-        [self showAlertViewWithInform:@"Please choose file path and input the row number!!!"];
+        [self showAlertViewWithInfo:@"Please choose file path and input the row number!!!"];
         [self.RowsLeft becomeFirstResponder];
     }
 }
@@ -362,6 +362,7 @@
 //查找匹配的正则
 - (IBAction)SearchPatternDeleted:(id)sender
 {
+    NSButton *btn = (NSButton *)sender;
     self.FilePathContents = [NSString stringWithContentsOfFile:self.FilePath.stringValue encoding:NSUTF8StringEncoding error:nil];
     if (self.FilePathContents.length == 0)
     {
@@ -377,155 +378,108 @@
         if (self.RemovePattern.stringValue.length > 0)
         {
             self.tableContents = [NSMutableArray new];
-            NSMutableArray *MatchArray = [self findinString:self.FilePathContents withregex:self.RemovePattern.stringValue];
-            for (int i = 0 ; i < MatchArray.count; i++)
+            if (btn.tag == 100)
             {
-                [self.tableContents addObject:[NSDictionary dictionaryWithObjects:@[[NSString stringWithFormat:@"<%d>",i+1],[MatchArray objectAtIndex:i],@""] forKeys:@[@"NO",@"CONTENT",@"ROW"]]];
-            }
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.TableView reloadData];
-            });
-        }else
-        {
-            [self showAlertViewWithInform:@"Please input the regex rule want to delete!!!"];
-            [self.RemovePattern becomeFirstResponder];
-        }
-    }else
-    {
-        [self showAlertViewWithInform:@"Please choose file path!!!"];
-        [self.FilePath becomeFirstResponder];
-    }
-}
-
-- (IBAction)SearchPatternShowRows:(id)sender
-{
-    self.FilePathContents = [NSString stringWithContentsOfFile:self.FilePath.stringValue encoding:NSUTF8StringEncoding error:nil];
-    if (self.FilePathContents.length == 0)
-    {
-        NSData *logData = [[NSData alloc] initWithContentsOfFile:self.FilePath.stringValue];
-        if ([logData length] > 0)
-        {
-            logData = [self replaceNoUtf8:logData];
-            self.FilePathContents  = [[NSString alloc] initWithData:logData encoding:NSUTF8StringEncoding];
-        }
-    }
-    if (self.FilePathContents.length > 0)
-    {
-        if (self.RemovePattern.stringValue.length > 0)
-        {
-            self.tableContents = [NSMutableArray new];
-            NSMutableArray * MatchArray = [self findinString:self.FilePathContents withregex:self.RemovePattern.stringValue];
-            //            for (int i = 0 ; i < MatchArray.count; i++)
-            //            {
-            //                [self.tableContents addObject:[NSDictionary dictionaryWithObjects:@[[NSString stringWithFormat:@"<%d>",i+1],[MatchArray objectAtIndex:i],@""] forKeys:@[@"NO",@"CONTENT",@"ROW"]]];
-            //            }
-            
-            NSString *logContents = self.FilePathContents;
-            NSMutableArray *resultArray = [NSMutableArray new];
-            while ([[self findFirstinString:logContents withregex:self.RemovePattern.stringValue] length] > 0 )
-            {
-                NSString *MatchString = [self findFirstinString:logContents withregex:self.RemovePattern.stringValue];
-                NSArray *logContentsArray = [logContents componentsSeparatedByString:@"\n"];
-                for (int i = 0 ; i < logContentsArray.count ; i++)
+                NSMutableArray *MatchArray = [self findinString:self.FilePathContents withregex:self.RemovePattern.stringValue];
+                for (int i = 0 ; i < MatchArray.count; i++)
                 {
-                    NSString *logContentsElement = [logContentsArray objectAtIndex:i];
-                    if ([logContentsElement containsString:MatchString])
+                    [self.tableContents addObject:[NSDictionary dictionaryWithObjects:@[[NSString stringWithFormat:@"<%d>",i+1],[MatchArray objectAtIndex:i],@""] forKeys:@[@"NO",@"CONTENT",@"ROW"]]];
+                }
+            }else{
+                NSString *logContents = self.FilePathContents;
+                NSMutableArray *resultArray = [NSMutableArray new];
+                while ([[self findFirstinString:logContents withregex:self.RemovePattern.stringValue] length] > 0 )
+                {
+                    NSString *MatchString = [self findFirstinString:logContents withregex:self.RemovePattern.stringValue];
+                    NSArray *logContentsArray = [logContents componentsSeparatedByString:@"\n"];
+                    for (int i = 0 ; i < logContentsArray.count ; i++)
                     {
-                        [resultArray addObject:[NSDictionary dictionaryWithObjects:@[MatchString,[NSString stringWithFormat:@"%d",i+1]] forKeys:@[@"Content",@"Row"]]];
-                        NSUInteger length = NSMaxRange([logContents rangeOfString:MatchString]);
-                        logContents = [logContents stringByReplacingOccurrencesOfString:MatchString withString:@"" options:0 range:NSMakeRange(0, length)];
-                        break;
+                        NSString *logContentsElement = [logContentsArray objectAtIndex:i];
+                        if ([logContentsElement containsString:MatchString])
+                        {
+                            [resultArray addObject:[NSDictionary dictionaryWithObjects:@[MatchString,[NSString stringWithFormat:@"%d",i+1]] forKeys:@[@"Content",@"Row"]]];
+                            NSUInteger length = NSMaxRange([logContents rangeOfString:MatchString]);
+                            logContents = [logContents stringByReplacingOccurrencesOfString:MatchString withString:@"" options:0 range:NSMakeRange(0, length)];
+                            break;
+                        }
                     }
                 }
-            }
-            NSMutableDictionary *NewResultDictionary = [NSMutableDictionary new];
-            for (int i = 0; i < resultArray.count; i++)
-            {
-                NSDictionary *dic = [resultArray objectAtIndex:i];
-                NSString *content = [dic objectForKey:@"Content"];
-                NSString *row = [dic objectForKey:@"Row"];
-                if ([NewResultDictionary.allKeys containsObject:content])
+                NSMutableDictionary *NewResultDictionary = [NSMutableDictionary new];
+                for (int i = 0; i < resultArray.count; i++)
                 {
-                    NSString *NewRow = [NSString stringWithFormat:@"%@,%@",[NewResultDictionary objectForKey:content],row];
-                    [NewResultDictionary setObject:NewRow forKey:content];
-                }else
+                    NSDictionary *dic = [resultArray objectAtIndex:i];
+                    NSString *content = [dic objectForKey:@"Content"];
+                    NSString *row = [dic objectForKey:@"Row"];
+                    if ([NewResultDictionary.allKeys containsObject:content])
+                    {
+                        NSString *NewRow = [NSString stringWithFormat:@"%@,%@",[NewResultDictionary objectForKey:content],row];
+                        [NewResultDictionary setObject:NewRow forKey:content];
+                    }else
+                    {
+                        [NewResultDictionary setObject:row forKey:content];
+                    }
+                }
+                int i = 1;
+                for (NSString *Content in NewResultDictionary.allKeys)
                 {
-                    [NewResultDictionary setObject:row forKey:content];
+                    [self.tableContents addObject:[NSDictionary dictionaryWithObjects:@[[NSString stringWithFormat:@"<%d>",i],Content,[NewResultDictionary objectForKey:Content]] forKeys:@[@"NO",@"CONTENT",@"ROW"]]];
                 }
             }
-            int i = 1;
-            for (NSString *Content in NewResultDictionary.allKeys)
-            {
-                [self.tableContents addObject:[NSDictionary dictionaryWithObjects:@[[NSString stringWithFormat:@"<%d>",i],Content,[NewResultDictionary objectForKey:Content]] forKeys:@[@"NO",@"CONTENT",@"ROW"]]];
-            }
-            NSLog(@"%@",self.tableContents );
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.TableView reloadData];
             });
         }else
         {
-            [self showAlertViewWithInform:@"Please input the regex rule want to delete!!!"];
+            [self showAlertViewWithInfo:@"Please input the regex rule want to delete!!!"];
             [self.RemovePattern becomeFirstResponder];
         }
     }else
     {
-        [self showAlertViewWithInform:@"Please choose file path!!!"];
+        [self showAlertViewWithInfo:@"Please choose file path!!!"];
         [self.FilePath becomeFirstResponder];
     }
 }
 
+//将匹配的正则删除
 - (IBAction)SaveAfterPatternDeleted:(id)sender
 {
     self.FilePathContents = [NSString stringWithContentsOfFile:self.FilePath.stringValue encoding:NSUTF8StringEncoding error:nil];
-    
     if (self.FilePathContents.length == 0)
     {
         NSData *logData = [[NSData alloc] initWithContentsOfFile:self.FilePath.stringValue];
-        
         if ([logData length] > 0)
         {
             logData = [self replaceNoUtf8:logData];
             self.FilePathContents  = [[NSString alloc] initWithData:logData encoding:NSUTF8StringEncoding];
         }
     }
-    
     if (self.FilePathContents.length > 0)
     {
         if (self.RemovePattern.stringValue.length > 0)
         {
             NSError *error = NULL;
             NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:self.RemovePattern.stringValue options:0 error:&error];
-            
             if (regex != nil)
             {
                 NSString *newContents = [regex stringByReplacingMatchesInString:self.FilePathContents options:0 range:NSMakeRange(0, [self.FilePathContents length]) withTemplate:@""];
-                
                 [newContents writeToFile:self.FilePath.stringValue atomically:YES encoding:NSUTF8StringEncoding error:nil];
-                
-                dispatch_async(dispatch_get_main_queue(), ^
-                               {
-                                   [self showAlertViewWithInform:@"文件保存成功 !!!"];
-                               });
-                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self showAlertViewWithInfo:@"Save successful!!!"];
+                });
             }
-            
-            
-            
         }else
         {
-            [self showAlertViewWithInform:@"请输入需要删除的正则表达式 !!!"];
+            [self showAlertViewWithInfo:@"Please input the regex rule want to delete!!!"];
             [self.RemovePattern becomeFirstResponder];
         }
-        
-        
     }else
     {
-        [self showAlertViewWithInform:@"请先选择文件路径 !!!"];
+        [self showAlertViewWithInfo:@"Please choose file path!!!"];
         [self.FilePath becomeFirstResponder];
     }
-    
-    
 }
+
+
 - (IBAction)SaveAtLast:(id)sender
 {
     if ([self.FilePath1.stringValue length] > 0 && [self.FilePath2.stringValue length] > 0)
@@ -535,62 +489,44 @@
         {
             NSString *contents1 = [self ReadFile:self.FilePath1.stringValue];
             NSString *contents2 = [self ReadFile:self.FilePath2.stringValue];
-            
             if (contents1.length > 0 && contents2.length > 0)
             {
                 NSArray *contentsArray1 = [contents1 componentsSeparatedByString:@"\n"];
                 NSArray *contentsArray2 = [contents2 componentsSeparatedByString:@"\n"];
-                
                 NSMutableArray *newcontentsArray1 = [NSMutableArray arrayWithArray:contentsArray1];
                 NSMutableArray *newcontentsArray2 = [NSMutableArray arrayWithArray:contentsArray2];
-                
-                
                 for (NSString *Content in contentsArray1)
                 {
                     if ([newcontentsArray2 containsObject:Content])
                     {
                         [newcontentsArray1 removeObject:Content];
                         [newcontentsArray2 removeObject:Content];
-                        
                     }
                 }
-                
                 NSString *newContent1 = [newcontentsArray1 componentsJoinedByString:@"\n"];
                 NSString *newContent2 = [newcontentsArray2 componentsJoinedByString:@"\n"];
-                
-                
                 [newContent1 writeToFile:self.FilePath1.stringValue atomically:YES encoding:NSUTF8StringEncoding error:nil];
                 [newContent2 writeToFile:self.FilePath2.stringValue atomically:YES encoding:NSUTF8StringEncoding error:nil];
-                
-                dispatch_async(dispatch_get_main_queue(), ^
-                               {
-                                   [self showAlertViewWithInform:@"文件保存成功 !!!"];
-                               });
-                
-                
-                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self showAlertViewWithInfo:@"Save successful!!!"];
+                });
             }else
             {
-                [self showAlertViewWithInform:@"文件无法正确读取，请重新选择 !!!"];
+                [self showAlertViewWithInfo:@"File can't load,please choose again!!!"];
             }
-            
         }else
         {
-            [self showAlertViewWithInform:@"请先选择正确的文件路径 !!!"];
+            [self showAlertViewWithInfo:@"Please choose correct file path!!!"];
         }
-        
     }else
     {
-        [self showAlertViewWithInform:@"请先选择文件路径 !!!"];
+        [self showAlertViewWithInfo:@"Please choose file path!!!"];
     }
-    
 }
-
 
 -(NSString *)ReadFile:(NSString *) path
 {
     NSString *contents = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    
     if (contents.length == 0)
     {
         NSData *logData = [[NSData alloc] initWithContentsOfFile:path];
@@ -601,11 +537,10 @@
             contents  = [[NSString alloc] initWithData:logData encoding:NSUTF8StringEncoding];
         }
     }
-    
     return contents;
 }
 
--(void)showAlertViewWithInform:(NSString *)InformativeText
+-(void)showAlertViewWithInfo:(NSString *)InformativeText
 {
     NSAlert *alert = [[NSAlert alloc] init];
     [alert setMessageText:@"Notice"];
