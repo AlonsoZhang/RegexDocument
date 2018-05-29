@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E2B7EF4E20BD39B300F6D2DC /* HelpWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B7EF4C20BD39B300F6D2DC /* HelpWindowController.m */; };
+		E2B7EF4F20BD39B300F6D2DC /* HelpWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2B7EF4D20BD39B300F6D2DC /* HelpWindowController.xib */; };
+		E2B7EF5120BD3DBB00F6D2DC /* PatternList.plist in Resources */ = {isa = PBXBuildFile; fileRef = E2B7EF5020BD3DBB00F6D2DC /* PatternList.plist */; };
 		E2DDE63520BBF17300F0F207 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E2DDE63420BBF17300F0F207 /* AppDelegate.m */; };
 		E2DDE63820BBF17400F0F207 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2DDE63720BBF17400F0F207 /* ViewController.m */; };
 		E2DDE63A20BBF17500F0F207 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2DDE63920BBF17500F0F207 /* Assets.xcassets */; };
@@ -15,6 +18,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E2B7EF4B20BD39B300F6D2DC /* HelpWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelpWindowController.h; sourceTree = "<group>"; };
+		E2B7EF4C20BD39B300F6D2DC /* HelpWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelpWindowController.m; sourceTree = "<group>"; };
+		E2B7EF4D20BD39B300F6D2DC /* HelpWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HelpWindowController.xib; sourceTree = "<group>"; };
+		E2B7EF5020BD3DBB00F6D2DC /* PatternList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PatternList.plist; sourceTree = "<group>"; };
 		E2DDE63020BBF17300F0F207 /* RegexDocument.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RegexDocument.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2DDE63320BBF17300F0F207 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E2DDE63420BBF17300F0F207 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -63,7 +70,11 @@
 				E2DDE63720BBF17400F0F207 /* ViewController.m */,
 				E2DDE63920BBF17500F0F207 /* Assets.xcassets */,
 				E2DDE63B20BBF17500F0F207 /* Main.storyboard */,
+				E2B7EF4B20BD39B300F6D2DC /* HelpWindowController.h */,
+				E2B7EF4C20BD39B300F6D2DC /* HelpWindowController.m */,
+				E2B7EF4D20BD39B300F6D2DC /* HelpWindowController.xib */,
 				E2DDE63E20BBF17500F0F207 /* Info.plist */,
+				E2B7EF5020BD3DBB00F6D2DC /* PatternList.plist */,
 				E2DDE63F20BBF17500F0F207 /* main.m */,
 				E2DDE64120BBF17500F0F207 /* RegexDocument.entitlements */,
 			);
@@ -133,7 +144,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2DDE63A20BBF17500F0F207 /* Assets.xcassets in Resources */,
+				E2B7EF5120BD3DBB00F6D2DC /* PatternList.plist in Resources */,
 				E2DDE63D20BBF17500F0F207 /* Main.storyboard in Resources */,
+				E2B7EF4F20BD39B300F6D2DC /* HelpWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +159,7 @@
 			files = (
 				E2DDE63820BBF17400F0F207 /* ViewController.m in Sources */,
 				E2DDE64020BBF17500F0F207 /* main.m in Sources */,
+				E2B7EF4E20BD39B300F6D2DC /* HelpWindowController.m in Sources */,
 				E2DDE63520BBF17300F0F207 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,8 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "HelpWindowController.h"
 
 @interface ViewController : NSViewController<NSApplicationDelegate,NSTableViewDelegate,NSTableViewDataSource>
+{
+    HelpWindowController *helpWindowController;
+}
 
 @property NSMutableArray *tableContentsDemo;
 @property (unsafe_unretained) IBOutlet NSTextView *TestStringDemo;

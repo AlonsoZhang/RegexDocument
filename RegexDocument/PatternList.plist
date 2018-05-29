@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>PATTERN</key>
+		<string>\d{4}/\d{2}/\d{2} \d{2}:\d{2}:\d{2}\.\d{6}:</string>
+		<key>CONTENT</key>
+		<string>Match&quot;2017/11/28 08:37:22.690059:&quot;</string>
+	</dict>
+	<dict>
+		<key>PATTERN</key>
+		<string>\[\d{2}:\d{2}:\d{2}\.\d{4}]</string>
+		<key>CONTENT</key>
+		<string>Match&quot;[08:38:45.2038]&quot;</string>
+	</dict>
+	<dict>
+		<key>PATTERN</key>
+		<string>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3} GMT\+8 \[\d*?]:</string>
+		<key>CONTENT</key>
+		<string>Match&quot;2017-11-28 08:53:00.875 GMT+8 [8756]:&quot;</string>
+	</dict>
+	<dict>
+		<key>PATTERN</key>
+		<string>0x[A-Fa-f0-9]*</string>
+		<key>CONTENT</key>
+		<string>Match&quot;0xffffffff&quot;</string>
+	</dict>
+	<dict>
+		<key>PATTERN</key>
+		<string>\d</string>
+		<key>CONTENT</key>
+		<string>Match a number</string>
+	</dict>
+	<dict>
+		<key>PATTERN</key>
+		<string>.*\(\d{1,2}% complete\)</string>
+		<key>CONTENT</key>
+		<string>Match a row contain &quot;(**% complete)&quot; </string>
+	</dict>
+</array>
+</plist>

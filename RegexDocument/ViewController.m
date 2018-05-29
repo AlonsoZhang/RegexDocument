@@ -22,7 +22,17 @@
 
 - (IBAction)HelpBtn:(id)sender
 {
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(respondsToNotification:) name:@"notification_name" object:nil];
+    if(!helpWindowController)
+    {
+        helpWindowController=[[HelpWindowController alloc] initWithWindowNibName:@"HelpWindowController"];
+    }
+    [helpWindowController showWindow:self];
+}
+
+- (void)respondsToNotification:(NSNotification *)info
+{
+    self.RemovePattern.stringValue = info.object;
 }
 
 - (void)setRepresentedObject:(id)representedObject {
@@ -479,7 +489,7 @@
     }
 }
 
-
+//比对File1和2并删除相同部分
 - (IBAction)SaveAtLast:(id)sender
 {
     if ([self.FilePath1.stringValue length] > 0 && [self.FilePath2.stringValue length] > 0)
