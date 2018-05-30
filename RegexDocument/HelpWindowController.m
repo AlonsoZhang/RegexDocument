@@ -46,6 +46,7 @@
 {
     NSString *value = [[self.HelpTableContents objectAtIndex:row] objectForKey:@"PATTERN"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"notification_name" object:value];
+    [self.window close];
     return true;
 }
 

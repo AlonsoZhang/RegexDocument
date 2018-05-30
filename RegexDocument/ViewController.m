@@ -221,6 +221,7 @@
     }else
     {
         self.FilePath.stringValue = [self ChooselogPath];
+        NSLog(@"%@",self.FilePath.stringValue);
         self.FilePathContents = [NSString stringWithContentsOfFile:self.FilePath.stringValue encoding:NSUTF8StringEncoding error:nil];
         if (self.FilePathContents.length == 0)
         {
@@ -315,6 +316,7 @@
 //找到正则匹配的行数
 - (IBAction)SearchPattern:(id)sender
 {
+    NSLog(@"%lu,%lu",(unsigned long)self.FilePathContents.length,(unsigned long)self.SearchPattern.stringValue.length);
     if (self.FilePathContents.length > 0 && self.SearchPattern.stringValue.length > 0)
     {
         NSString *SearchPattern = self.SearchPattern.stringValue;
@@ -559,6 +561,5 @@
     [alert setAlertStyle:NSAlertStyleWarning];
     [alert runModal];
 }
-
 
 @end
